@@ -131,24 +131,27 @@ Local Notation "⋀ S" := (inf S) (at level 40).
 Local Notation "s ⋞ t" := (Poset.leq s t) (at level 70).
 Local Notation "s ∈ S" := (s \In S) (at level 70).
 
-Lemma mini_i_1 : forall s, s \In S -> s <== sup S.
+(* Mini-exercises from p. 44 in Ordered Sets and Complete Lattices *)
+(* http://profs.sci.univr.it/~giaco/paperi/lattices-for-CS.pdf *)
+
+Lemma mini_i_1 : forall s, s ∈ S -> s ⋞ ⋁ S.
 Proof.
 exact: supP.
 Qed.
 
-Lemma mini_i_2 : forall s, s \In S -> inf S <== s.
+Lemma mini_i_2 : forall s, s ∈ S -> ⋀ S ⋞ s.
 Proof.
 exact: infP.
 Qed.
 
 Lemma mini_iv_1 :
-  sup S <== inf T ->
-  (forall s t, s \In S -> t \In T -> s <== t).
+  ⋁ S ⋞ ⋀ T ->
+  (forall s t, s ∈ S -> t ∈ T -> s ⋞ t).
 Proof.
 move => HST s t Hs Ht.
 have HsupP := supP Hs.
 have HinfP := infP Ht.
-have Hle: s <== inf T.
+have Hle: s ⋞ inf T.
   move: HsupP HST.
   exact: poset_trans.
 move: Hle HinfP.
@@ -156,8 +159,8 @@ exact: poset_trans.
 Qed.
 
 Lemma mini_iv_2 :
-  (forall s t, s \In S -> t \In T -> s <== t) ->
-  sup S <== inf T.
+  (forall s t, s ∈ S -> t ∈ T -> s ⋞ t) ->
+  ⋁ S ⋞ ⋀ T.
 Proof.
 move => Hst.
 have HsupM := @supM _ S (inf T).
@@ -169,9 +172,9 @@ move => x Hx.
 exact: Hst.
 Qed.
 
-Hypothesis S_subset_T : forall s, s \In S -> s \In T.
+Hypothesis S_subset_T : forall s, s ∈ S -> s ∈ T.
 
-Lemma mini_v_1 : sup S <== sup T.
+Lemma mini_v_1 : ⋁ S ⋞ ⋁ T.
 Proof.
 apply supM.
 move => y H.
@@ -179,7 +182,7 @@ apply supP.
 exact: S_subset_T.
 Qed.
 
-Lemma mini_v_2 : inf T <== inf S.
+Lemma mini_v_2 : ⋀ T ⋞ ⋀ S.
 Proof.
 apply infM.
 move => y H.

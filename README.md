@@ -1,6 +1,6 @@
 # Lattice theory in Coq
 
-Some simple lattice theory in Coq. Examples taken from chapter 2 of [_Ordered Sets and Complete Lattices_](http://profs.sci.univr.it/~giaco/paperi/lattices-for-CS.pdf).
+Some simple lattice theory in Coq. Examples taken from [_Ordered Sets and Complete Lattices_](http://profs.sci.univr.it/~giaco/paperi/lattices-for-CS.pdf).
 
 ### Requirements
 
