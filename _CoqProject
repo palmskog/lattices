@@ -1,0 +1,6 @@
+-Q fcsl fcsl
+-Q core lattices
+-arg "-w -notation-overridden,-redundant-canonical-projection"
+
+fcsl/domain.v
+core/lattices.v
